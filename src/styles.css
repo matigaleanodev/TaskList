@@ -11,7 +11,8 @@
 }
 body{
     font-family: sans-serif;
-    background-color: #9c9a9a;    
+    color: #021f2e;
+    background-color: #021f2e;    
 }
 
 .container{
@@ -19,9 +20,10 @@ body{
     margin: 30px auto;
     overflow: auto;
     min-height: 300px;
-    border: 1px solid steelblue;
+    border: 3px solid #CCFFFF;
     padding: 30px;
     border-radius: 5px;
+    background-color: #FFCCCC;
 }
 
 .btn {
