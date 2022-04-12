@@ -1,12 +1,12 @@
 .task {
-    background-color: #f5eace;
+    background-color: var(--colorPrincipal);
     margin: 5px;
     padding: 10px 20px;
     cursor: pointer;
 }
 
 .task.reminder {
-    border-left: 10px solid #021f2e;
+    border-left: 10px solid var(--colorBotonVerde);
 }
 
 .task h3 {
@@ -15,5 +15,5 @@
     justify-content: space-between;
 }
 .icon {
-    color: #910404;
+    color: var(--colorBotonRojo);
 }

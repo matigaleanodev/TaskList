@@ -5,11 +5,11 @@
 }
 
 :root {
-    --colorPrincipal: #CCFFFF;
+    --colorPrincipal: #f07c10;
     --colorOscuro: #021f2e;
     --colorClaro: #f5eace;
-    --colorBoton: #33850d;
-    --colorBoton: #9e0606;
+    --colorBotonVerde: #33850d;
+    --colorBotonRojo: #9e0606;
     
 }
 
@@ -20,8 +20,8 @@
 }
 body{
     font-family: sans-serif;
-    color: #021f2e;
-    background-color: #021f2e;    
+    color: var(--colorOscuro);
+    background-color: var(--colorOscuro);    
 }
 
 .container{
@@ -29,16 +29,16 @@ body{
     margin: 30px auto;
     overflow: auto;
     min-height: 300px;
-    border: 3px solid #CCFFFF;
+    border: 3px solid var(--colorPrincipal);
     padding: 30px;
     border-radius: 5px;
-    background-color: #FFCCCC;
+    background-color: var(--colorClaro);
 }
 
 .btn {
     display: inline-block;
     background: #000;
-    color: #CCFFFF;
+    color: var(--colorClaro);
     border: none;
     padding: 10px 20px;
     margin: 5px;

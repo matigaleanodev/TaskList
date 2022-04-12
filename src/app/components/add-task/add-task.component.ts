@@ -15,7 +15,7 @@ export class AddTaskComponent implements OnInit {
 
   @Output() onAddTask: EventEmitter<Task> = new EventEmitter();
 
-  form: FormGroup;
+  
   text:string ="";
   day:string ="";
   reminder:boolean =false;
@@ -24,15 +24,12 @@ export class AddTaskComponent implements OnInit {
 
   constructor(
     private uiService: UiService,
-    private formBuilder: FormBuilder
+    
   ) {
     this.suscription = this.uiService.onToggle()
                               .subscribe(value => this.showAddTask = value);
     
-    this.form= this.formBuilder.group({
-                                text:['',[Validators.required, Validators.minLength(8)]],
-                                day:['', [Validators.required]]
-   })
+    
   }
 
   ngOnInit(): void {
@@ -41,14 +38,8 @@ export class AddTaskComponent implements OnInit {
 
 
 
-  onSubmit(event: Event){
-    event.preventDefault; 
- 
-    if (this.form.valid){
-      alert("Todo salio bien ¡Enviar Task!")
-    }else{
-      this.form.markAllAsTouched(); 
-    }
+  onSubmit(){
+  
     const {text,day,reminder} = this
     const newTask = {text,day,reminder}
 
