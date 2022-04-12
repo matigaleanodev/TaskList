@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { Task } from 'src/app/services/tasks';
 import { UiService } from 'src/app/services/ui.service';
@@ -13,26 +14,40 @@ import { UiService } from 'src/app/services/ui.service';
 export class AddTaskComponent implements OnInit {
 
   @Output() onAddTask: EventEmitter<Task> = new EventEmitter();
+
+  form: FormGroup;
   text:string ="";
   day:string ="";
   reminder:boolean =false;
   showAddTask:boolean =false;
-  suscription?: Subscription;
+  suscription: Subscription;
+
   constructor(
-    private uiService: UiService
+    private uiService: UiService,
+    private formBuilder: FormBuilder
   ) {
     this.suscription = this.uiService.onToggle()
-                              .subscribe(value => this.showAddTask = value)
-   }
+                              .subscribe(value => this.showAddTask = value);
+    
+    this.form= this.formBuilder.group({
+                                text:['',[Validators.required, Validators.minLength(8)]],
+                                day:['', [Validators.required]]
+   })
+  }
 
   ngOnInit(): void {
     
   }
 
-  onSubmit(){
-    if(this.text.length === 0){
-      alert('Please add a Task');
-      return
+
+
+  onSubmit(event: Event){
+    event.preventDefault; 
+ 
+    if (this.form.valid){
+      alert("Todo salio bien ¡Enviar Task!")
+    }else{
+      this.form.markAllAsTouched(); 
     }
     const {text,day,reminder} = this
     const newTask = {text,day,reminder}

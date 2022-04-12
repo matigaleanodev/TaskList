@@ -4,6 +4,15 @@
     src: url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
 }
 
+:root {
+    --colorPrincipal: #CCFFFF;
+    --colorOscuro: #021f2e;
+    --colorClaro: #f5eace;
+    --colorBoton: #33850d;
+    --colorBoton: #9e0606;
+    
+}
+
 *{
     box-sizing: border-box;
     margin: 0;
