@@ -6,11 +6,11 @@ import { Task } from 'src/app/services/tasks';
 
 
 @Component({
-  selector: 'app-tasks',
-  templateUrl: './tasks.component.html',
-  styleUrls: ['./tasks.component.css']
+  selector: 'app-task',
+  templateUrl: './task.component.html',
+  styleUrls: ['./task.component.css']
 })
-export class TasksComponent implements OnInit {
+export class TaskComponent implements OnInit {
 
   tasks: Task[] = [];
   
@@ -33,6 +33,17 @@ export class TasksComponent implements OnInit {
             return t.id !== task.id
           })
         })
-      }
+  }
+
+  toggleReminder(task: Task){
+    task.reminder = !task.reminder;
+    this.taskService.updateTaskReminder(task).subscribe();
+  }
+
+  addTask(task: Task){
+    this.taskService.addTask(task).subscribe((task)=>{
+    this.tasks.push(task);
+  });
+  }
 
 }
