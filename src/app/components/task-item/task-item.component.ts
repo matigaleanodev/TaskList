@@ -1,8 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import { Task } from 'src/app/services/tasks'; 
 import { TASKS } from 'mock-tasks';
+
 
 @Component({
   selector: 'app-task-item',
@@ -11,12 +12,17 @@ import { TASKS } from 'mock-tasks';
 })
 export class TaskItemComponent implements OnInit {
 
-  @Input() task: Task = TASKS[0];
+  @Input() task: Task = TASKS[0]
+  @Output() onDeleteTask: EventEmitter<Task> = new EventEmitter()
   faTimes = faTimes;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onDelete(task: Task){
+    this.onDeleteTask.emit(task);
   }
 
 }
