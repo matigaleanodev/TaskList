@@ -17,6 +17,12 @@
       "day": "2022-04-16",
       "reminder": true,
       "id": 3
+    },
+    {
+      "text": "Tarea Agregada",
+      "day": "2022-04-13",
+      "reminder": false,
+      "id": 4
     }
   ]
 }

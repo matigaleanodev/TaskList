@@ -1,6 +1,7 @@
 <form 
+    [formGroup]="form"
     class="add-form" 
-    (ngSubmit)="onSubmit()" 
+    (ngSubmit)="onSubmit($event)" 
     autocomplete="off"
     *ngIf="showAddTask"
 >
@@ -8,7 +9,8 @@
         <label for="text">Task</label>
         <input 
             type="text" 
-            name="text" 
+            name="text"
+            formControlName="text"
             id="text" 
             placeholder="add Task"
             required minlength="8"
@@ -23,21 +25,34 @@
         <label for="day">Day</label>
         <input 
             type="date"
-            name="day" id="day" 
+            name="day"
+            formControlName="day" 
+            id="day" 
             placeholder="add day & time"
             [(ngModel)]="day"
             >
     </div>
+    <!-- <div *ngIf="text?.errors  && text?.touched">    
+        <p *ngIf="text?.hasError('required')" class="error">
+            La tarea es requerida
+        </p>
+    </div> -->
 
     <div class="form-control form-control-check">
         <label for="reminder">Reminder</label>
         <input 
             type="checkbox" 
-            name="reminder" 
+            name="reminder"
+            formControlName="reminder" 
             id="reminder"
             [(ngModel)]="reminder"
             >
     </div>
+    <!-- <div *ngIf="day?.errors  && day?.touched">    
+        <p *ngIf="day?.hasError('required')" class="error">
+            La tarea es requerida
+        </p>
+    </div> -->
 
     <input type="submit" value="Save task" class="btn btn-block btn-submit">
 </form>

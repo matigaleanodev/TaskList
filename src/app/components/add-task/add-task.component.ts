@@ -15,35 +15,42 @@ export class AddTaskComponent implements OnInit {
 
   @Output() onAddTask: EventEmitter<Task> = new EventEmitter();
 
-  
-  text:string ="";
-  day:string ="";
-  reminder:boolean =false;
+  form: FormGroup;
+  text='';
+  day='';
+  reminder=false;
   showAddTask:boolean =false;
   suscription: Subscription;
 
   constructor(
     private uiService: UiService,
-    
+    private formBuilder: FormBuilder
   ) {
-    this.suscription = this.uiService.onToggle()
-                              .subscribe(value => this.showAddTask = value);
-    
-    
+    this.suscription = this.uiService.onToggle().subscribe(value => this.showAddTask = value);
+
+    this.form= this.formBuilder.group({
+      text:['',[Validators.required, Validators.minLength(8)]],
+      day:['',[Validators.required]],
+      reminder:[Boolean,[]]
+    })
   }
 
   ngOnInit(): void {
     
   }
 
-
-
-  onSubmit(){
   
-    const {text,day,reminder} = this
-    const newTask = {text,day,reminder}
-
-    this.onAddTask.emit(newTask);
+  onSubmit(event: Event){
+    event.preventDefault();
+    if(this.form.valid){
+      const {text,day,reminder} = this;
+      const newTask = {text,day,reminder};
+      this.onAddTask.emit(newTask);
+      alert("Todo salio bien ¡Tarea Eviada!");
+    } else {
+      this.form.markAllAsTouched();
+    }
+    
   }
 
   
