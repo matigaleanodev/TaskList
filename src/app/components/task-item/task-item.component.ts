@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-import { Task } from 'tasks';
+import { Task } from 'src/app/services/tasks'; 
 import { TASKS } from 'mock-tasks';
 
 @Component({

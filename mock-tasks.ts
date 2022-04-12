@@ -1,4 +1,4 @@
-import { Task } from "./tasks"
+import { Task } from "./src/app/services/tasks"
 
 export const TASKS: Task[] = [
     {
