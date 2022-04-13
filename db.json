@@ -1,15 +1,9 @@
 {
   "tasks": [
     {
-      "id": 1,
-      "text": "'estudiar angular'",
-      "day": "'Mayo 12 a las 15:00'",
-      "reminder": false
-    },
-    {
       "text": "Terminar esta tarea",
       "day": "2022-04-16",
-      "reminder": true,
+      "reminder": false,
       "id": 2
     },
     {

@@ -8,6 +8,7 @@
     --colorPrincipal: #f07c10;
     --colorOscuro: #021f2e;
     --colorClaro: #f5eace;
+    --colorCeleste: #CCFFFF;
     --colorBotonVerde: #33850d;
     --colorBotonRojo: #9e0606;
     
@@ -18,10 +19,16 @@
     margin: 0;
     padding: 0;
 }
+
 body{
     font-family: sans-serif;
     color: var(--colorOscuro);
     background-color: var(--colorOscuro);    
+}
+
+::selection {
+    background-color: var(--colorOscuro);
+    color: var(--colorClaro);
 }
 
 .container{
