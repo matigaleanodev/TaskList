@@ -14,7 +14,6 @@
             id="text" 
             placeholder="Asignr una Tarea"
             required minlength="8"
-            [(ngModel)]="text"
             
     >
     </div>
@@ -35,7 +34,6 @@
             formControlName="day" 
             id="day" 
             value="2022-05-05"
-            [(ngModel)]="day"
             >
     </div>
     <div *ngIf="Day?.errors  && Day?.touched">    
@@ -50,7 +48,6 @@
             name="reminder"
             formControlName="reminder" 
             id="reminder"
-            [(ngModel)]="reminder"
             >
         <label for="reminder">Reminder</label>
     </div>

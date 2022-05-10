@@ -16,9 +16,6 @@ export class AddTaskComponent implements OnInit {
   @Output() onAddTask: EventEmitter<Task> = new EventEmitter();
 
   form: FormGroup;
-  text:string='';
-  day:string='';
-  reminder=false;
   showAddTask:boolean =false;
   suscription: Subscription;
 
@@ -56,9 +53,8 @@ export class AddTaskComponent implements OnInit {
   onSubmit(event: Event){
     event.preventDefault();
     if(this.form.valid){
-      const {text,day,reminder} = this;
-      const newTask = {text,day,reminder};
-      this.onAddTask.emit(newTask);
+      this.onAddTask.emit(this.form.value);
+      this.form.reset();
       alert("Todo salio bien ¡Tarea Eviada!");
     } else {
       this.form.markAllAsTouched();

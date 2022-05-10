@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscriber } from 'rxjs';
 import { TaskService } from 'src/app/services/task.service';
 
 import { Task } from 'src/app/services/tasks';   
@@ -29,7 +28,7 @@ export class TaskComponent implements OnInit {
     this.taskService.deleteTask(task)
       .subscribe(
         ()=>{
-          this.tasks = this.tasks.filter( (t) =>{
+          this.tasks = this.tasks.filter((t) =>{
             return t.id !== task.id
           })
         })

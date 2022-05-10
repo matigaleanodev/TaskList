@@ -4,5 +4,6 @@
         color="{{showAddTask ? 'var(--colorBotonRojo)' : 'var(--colorBotonVerde)' }}" 
         text="{{showAddTask ? 'Close Task' : 'Add Task' }}"
         (btnClick)="toggleAddTask()"
+        *ngIf="hasRoute('/')"
     ></app-button>
 </header>
