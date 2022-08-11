@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from 'src/app/services/task.service';
 
-import { Task } from 'src/app/services/tasks';   
+import { Task } from 'src/app/services/task';   
 
 
 @Component({
@@ -19,30 +19,22 @@ export class TaskComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.taskService.getTasks().subscribe((tasks)=>{
-      this.tasks = tasks
-    });
+    this.tasks = this.taskService.getTasks();
   }
 
   deleteTask(task: Task){
-    this.taskService.deleteTask(task)
-      .subscribe(
-        ()=>{
-          this.tasks = this.tasks.filter((t) =>{
-            return t.id !== task.id
-          })
-        })
+    this.taskService.deleteTask(task);
+    this.tasks = this.tasks.filter(t => t.id !== task.id);
   }
 
   toggleReminder(task: Task){
     task.reminder = !task.reminder;
-    this.taskService.updateTaskReminder(task).subscribe();
+    this.taskService.updateTaskReminder(task);
   }
 
   addTask(task: Task){
-    this.taskService.addTask(task).subscribe((task)=>{
+    this.taskService.addTask(task);
     this.tasks.push(task);
-  });
   }
 
 }

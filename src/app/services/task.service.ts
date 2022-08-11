@@ -1,40 +1,52 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Task } from './tasks';  
-
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-type':'application/json'
-  })
-}
+import { Task } from './task';
+import { Tasklist } from './tasklist'; 
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
-  private apiUrl = 'http://localhost:5001/tasks'
+  private taskList: Task[] = Tasklist;
 
-  constructor(
-    private http:HttpClient
-  ) { }
+  constructor() {}
 
-  getTasks(): Observable<Task[]>{
-    return this.http.get<Task[]>(this.apiUrl)
+  getTasks(){
+    if (localStorage.getItem('tasks') === null) {
+      localStorage.setItem('tasks', JSON.stringify(this.taskList));
+    } else {
+      this.taskList = JSON.parse(localStorage.getItem('tasks')!);
+    }
+    return this.taskList;
+  }
+  
+  addTask(task:Task){
+    if (localStorage.getItem('tasks') === null) {
+      this.taskList.push(task);
+      localStorage.setItem('tasks', JSON.stringify(this.taskList));
+    } else {
+      this.taskList = JSON.parse(localStorage.getItem('tasks')!);
+      this.taskList.push(task);
+      localStorage.setItem('tasks', JSON.stringify(this.taskList));
+    }      
   }
 
-  deleteTask(task:Task): Observable<Task>{
-    const url = `${this.apiUrl}/${task.id}`
-    return this.http.delete<Task>(url)
+  deleteTask(task:Task){
+    for (let i = 0; i < this.taskList.length; i++) {
+      if (this.taskList[i].id === task.id) {
+        this.taskList.splice(i, 1);
+        localStorage.setItem('tasks', JSON.stringify(this.taskList));
+      }
+    }
   }
 
-  updateTaskReminder(task:Task): Observable<Task>{
-    const url = `${this.apiUrl}/${task.id}`
-    return this.http.put<Task>(url, task, httpOptions)
+  updateTaskReminder(task:Task){
+    for (let i = 0; i < this.taskList.length; i++) {
+      if (this.taskList[i].id === task.id) {
+        this.taskList[i].reminder = task.reminder;
+        localStorage.setItem('tasks', JSON.stringify(this.taskList));
+      }
+    }
   }
 
-  addTask(task:Task): Observable<Task>{
-    return this.http.post<Task>(this.apiUrl, task, httpOptions)
-  }
 }
