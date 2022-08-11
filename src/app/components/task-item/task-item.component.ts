@@ -13,7 +13,7 @@ export class TaskItemComponent implements OnInit {
 
   @Input() task: Task = {
     text: '',
-    day: '',
+    day: new Date(),
     reminder: false
   }
   @Output() onDeleteTask: EventEmitter<Task> = new EventEmitter()
